@@ -6,6 +6,6 @@ public class NotEqualTestException extends TestException {
     }
 
     public NotEqualTestException(String expected, String actual, String msg) {
-        super(msg+"\nExpected : "+expected+"\nActual   : "+actual);
+        super(msg+"\nExpected : "+expected+"*\nActual   : "+actual+"*");
     }
 }

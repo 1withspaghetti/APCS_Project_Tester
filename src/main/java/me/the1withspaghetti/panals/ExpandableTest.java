@@ -12,8 +12,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import me.the1withspaghetti.tests.AbstractTestRunner;
 import me.the1withspaghetti.tests.TestException;
-import me.the1withspaghetti.util.ConsoleBuffer;
-import me.the1withspaghetti.util.TeeOutputStream;
 
 import java.io.*;
 import java.nio.BufferOverflowException;
@@ -109,26 +107,10 @@ public class ExpandableTest implements Closeable {
     public void executeTest(AbstractTestRunner test) {
 
         exe.submit(()->{
-            try {
                 setStatus(TestStatus.LOADING);
 
-                PipedInputStream newIn = new PipedInputStream();
-                PipedOutputStream simInStream = new PipedOutputStream(newIn);
-                PrintStream simIn = new PrintStream(new TeeOutputStream(simInStream, inout));
-
-                ConsoleBuffer simOut = new ConsoleBuffer(2048, out);
-                PrintStream newOut = new PrintStream(simOut);
-
-                InputStream oldIn = System.in;
-                PrintStream oldOut = System.out;
-                PrintStream oldErr = System.err;
-
-                System.setIn(newIn);
-                System.setOut(newOut);
-                System.setErr(err);
-
                 try {
-                    test.run(out, err, simIn, simOut);
+                    test.run(out, inout, err);
                     setStatus(TestStatus.SUCCESS);
                 } catch (TestException e) {
                     err.println("\nError: "+e.getMessage());
@@ -142,17 +124,9 @@ public class ExpandableTest implements Closeable {
                     setStatus(TestStatus.FAILED);
                 } catch (Exception e) {
                     err.println("\nUnexpected error while running test:");
-                    e.printStackTrace(System.err);
+                    e.printStackTrace(err);
                     setStatus(TestStatus.FAILED);
                 }
-
-                System.setIn(oldIn);
-                System.setOut(oldOut);
-                System.setErr(oldErr);
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         });
     }
 
