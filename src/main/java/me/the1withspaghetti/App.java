@@ -52,8 +52,11 @@ public class App extends Application {
             mainPanel.runTest(e.getTest(), e.getFile());
         });
 
+        String version = getClass().getPackage().getSpecificationVersion();
+        System.out.println("Program version: "+version);
+
         Scene scene = new Scene(vbox, 750, 500);
-        stage.setTitle("APCS Project Tester by Tyler Place");
+        stage.setTitle("APCS Project Tester by Tyler Place"+(version != null ? " "+version : ""));
         stage.setScene(scene);
         stage.show();
     }
