@@ -24,10 +24,10 @@ public class PrioritizingPatients {
             score = collectInfo(in);
             printPriority(name, score);
 
-            System.out.println();
-            System.out.println("Thank you for using our system!");
-            System.out.println("We hope we have helped you do your best!");
-            System.out.println();
+            //System.out.println();
+            System.out.println("\nThank you for using our system!");
+            System.out.println("We hope we have helped you do your best!\n");
+            //System.out.println();
 
             count++;
             maxScore = Math.max(maxScore, score);
@@ -39,8 +39,8 @@ public class PrioritizingPatients {
 
     static void printIntro() {
         System.out.println("Hello! We value you and your time, so we will help you prioritize which patients to see next!");
-        System.out.println("Please answer the following questions about the next patient so we can help you do your best work :)");
-        System.out.println();
+        System.out.println("Please answer the following questions about the next patient so we can help you do your best work :)\n");
+        //System.out.println();
     }
 
     static String getName(Scanner in) {

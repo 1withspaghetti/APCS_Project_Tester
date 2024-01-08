@@ -71,80 +71,80 @@ public class PrioritizingPatientsTest implements AbstractTest {
             ConsoleReader consoleOut = compiledCode.getProcessOutput();
             OutputStream consoleIn = compiledCode.getProcessInput();
 
-            assertEquals("Hello! We value you and your time, so we will help you prioritize which patients to see next!", consoleOut.readLine(1000, TimeUnit.MILLISECONDS));
-            assertEquals("Please answer the following questions about the next patient so we can help you do your best work :)", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-            assertEquals("", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+            assertEquals("Hello! We value you and your time, so we will help you prioritize which patients to see next!", consoleOut.nextLine(1000));
+            assertEquals("Please answer the following questions about the next patient so we can help you do your best work :)", consoleOut.nextLine(100));
+            assertEquals("", consoleOut.nextLine(100));
 
             int count = 0;
             int maxScore = 0;
 
             for (Patient p : patients) {
-                assertEquals("Please enter the next patient's name or \"quit\" to end the program.", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Please enter the next patient's name or \"quit\" to end the program.", consoleOut.nextLine(100));
 
-                assertEquals("Patient's name: ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Patient's name: ", consoleOut.nextLine(100));
                 consoleIn.write((p.name+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
 
-                assertEquals("Patient age: ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Patient age: ", consoleOut.nextLine(100));
                 consoleIn.write((p.age+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
 
-                assertEquals("Patient zip code: ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Patient zip code: ", consoleOut.nextLine(100));
                 consoleIn.write((p.zip[0]+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
                 for (int i = 1; i < p.zip.length; i++) {
-                    assertEquals("Invalid zip code, enter valid zip code: ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                    assertEquals("Invalid zip code, enter valid zip code: ", consoleOut.nextLine(100));
                     consoleIn.write((p.zip[i]+"\n").getBytes(StandardCharsets.US_ASCII));
                     consoleIn.flush();
                 }
 
-                assertEquals("Is our hospital \"in network\" for the patient's insurance? ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Is our hospital \"in network\" for the patient's insurance? ", consoleOut.nextLine(100));
                 consoleIn.write((p.inNetwork+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
 
-                assertEquals("Patient pain level (1-10): ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Patient pain level (1-10): ", consoleOut.nextLine(100));
                 consoleIn.write((p.painLevel[0]+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
                 for (int i = 1; i < p.painLevel.length; i++) {
-                    assertEquals("Invalid pain level, enter valid pain level (1-10): ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                    assertEquals("Invalid pain level, enter valid pain level (1-10): ", consoleOut.nextLine(100));
                     consoleIn.write((p.painLevel[i]+"\n").getBytes(StandardCharsets.US_ASCII));
                     consoleIn.flush();
                 }
 
-                assertEquals("Patient temperature (in degrees Fahrenheit): ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("Patient temperature (in degrees Fahrenheit): ", consoleOut.nextLine(100));
                 consoleIn.write((p.temp+"\n").getBytes(StandardCharsets.US_ASCII));
                 consoleIn.flush();
 
-                assertEquals("", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("", consoleOut.nextLine(100));
 
                 int score = computeScore(HOSPITAL_ZIP, p);
-                assertEquals("We have found patient " + p.name + " to have a priority score of: " + score, consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("We have found patient " + p.name + " to have a priority score of: " + score, consoleOut.nextLine(100));
                 if (score >= 332) {
-                    assertEquals("We have determined this patient is high priority, and it is advised to call an appropriate medical provider ASAP.", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                    assertEquals("We have determined this patient is high priority, and it is advised to call an appropriate medical provider ASAP.", consoleOut.nextLine(100));
                 } else if (score >= 166) {
-                    assertEquals("We have determined this patient is medium priority. Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                    assertEquals("We have determined this patient is medium priority. Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.", consoleOut.nextLine(100));
                 } else {
-                    assertEquals("We have determined this patient is low priority. Please put them on the waitlist for when a medical provider becomes available.", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                    assertEquals("We have determined this patient is low priority. Please put them on the waitlist for when a medical provider becomes available.", consoleOut.nextLine(100));
                 }
 
-                assertEquals("", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-                assertEquals("Thank you for using our system!", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-                assertEquals("We hope we have helped you do your best!", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-                assertEquals("", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+                assertEquals("", consoleOut.nextLine(100));
+                assertEquals("Thank you for using our system!", consoleOut.nextLine(100));
+                assertEquals("We hope we have helped you do your best!", consoleOut.nextLine(100));
+                assertEquals("", consoleOut.nextLine(100));
 
                 count++;
                 maxScore = Math.max(maxScore, score);
             }
 
-            assertEquals("Please enter the next patient's name or \"quit\" to end the program.", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-            assertEquals("Patient's name: ", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+            assertEquals("Please enter the next patient's name or \"quit\" to end the program.", consoleOut.nextLine(100));
+            assertEquals("Patient's name: ", consoleOut.nextLine(100));
             consoleIn.write("quit\n".getBytes(StandardCharsets.US_ASCII));
             consoleIn.flush();
 
-            assertEquals("Statistics for the day:", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-            assertEquals("..." + count + " patients were helped", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-            assertEquals("...the highest priority patient we saw had a score of " + maxScore, consoleOut.readLine(100, TimeUnit.MILLISECONDS));
-            assertEquals("Good job today!", consoleOut.readLine(100, TimeUnit.MILLISECONDS));
+            assertEquals("Statistics for the day:", consoleOut.nextLine(100));
+            assertEquals("..." + count + " patients were helped", consoleOut.nextLine(100));
+            assertEquals("...the highest priority patient we saw had a score of " + maxScore, consoleOut.nextLine(100));
+            assertEquals("Good job today!", consoleOut.nextLine(100));
 
         }
     }

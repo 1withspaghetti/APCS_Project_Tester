@@ -89,8 +89,8 @@ public class CompiledCode implements AutoCloseable {
         });
 
         processIn = new TeeOutputStream(this.inout, process.getOutputStream());
-        processOut = new ConsoleReader(new InputStreamReader(new TeeInputStream(process.getInputStream(), out)));
-        processErr = new ConsoleReader(new InputStreamReader(new TeeInputStream(process.getErrorStream(), err)));
+        processOut = new ConsoleReader(process.getInputStream(), out, 10240);
+        processErr = new ConsoleReader(process.getErrorStream(), err, 10240);
     }
 
     public ConsoleReader getProcessOutput() {
