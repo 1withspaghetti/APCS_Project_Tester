@@ -52,7 +52,7 @@ public class App extends Application {
             mainPanel.runTest(e.getTest(), e.getFile());
         });
 
-        String version = getClass().getPackage().getSpecificationVersion();
+        String version = "v1.2";
         System.out.println("Program version: "+version);
 
         Scene scene = new Scene(vbox, 750, 500);
