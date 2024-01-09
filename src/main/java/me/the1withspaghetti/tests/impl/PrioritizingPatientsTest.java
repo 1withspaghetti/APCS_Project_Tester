@@ -120,11 +120,14 @@ public class PrioritizingPatientsTest implements AbstractTest {
                 int score = computeScore(HOSPITAL_ZIP, p);
                 assertEquals("We have found patient " + p.name + " to have a priority score of: " + score, consoleOut.nextLine(100));
                 if (score >= 332) {
-                    assertEquals("We have determined this patient is high priority, and it is advised to call an appropriate medical provider ASAP.", consoleOut.nextLine(100));
+                    assertEquals("We have determined this patient is high priority,", consoleOut.nextLine(100));
+                    assertEquals("and it is advised to call an appropriate medical provider ASAP.", consoleOut.nextLine(100));
                 } else if (score >= 166) {
-                    assertEquals("We have determined this patient is medium priority. Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.", consoleOut.nextLine(100));
+                    assertEquals("We have determined this patient is medium priority.", consoleOut.nextLine(100));
+                    assertEquals("Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.", consoleOut.nextLine(100));
                 } else {
-                    assertEquals("We have determined this patient is low priority. Please put them on the waitlist for when a medical provider becomes available.", consoleOut.nextLine(100));
+                    assertEquals("We have determined this patient is low priority.", consoleOut.nextLine(100));
+                    assertEquals("Please put them on the waitlist for when a medical provider becomes available.", consoleOut.nextLine(100));
                 }
 
                 assertEquals("", consoleOut.nextLine(100));

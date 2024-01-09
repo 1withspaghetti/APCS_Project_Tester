@@ -29,7 +29,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        Label title = new Label("APCS Project Tester by Tyler Place");
+        String version = "v1.3";
+        System.out.println("Program version: "+version);
+
+        Label title = new Label("APCS Project Tester by Tyler Place"+(version != null ? " ("+version+")" : ""));
         title.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 
         ControlPanel controlPanel = new ControlPanel(stage);
@@ -51,9 +54,6 @@ public class App extends Application {
             System.out.println("Running test: "+e.getTest().getTestName());
             mainPanel.runTest(e.getTest(), e.getFile());
         });
-
-        String version = "v1.2";
-        System.out.println("Program version: "+version);
 
         Scene scene = new Scene(vbox, 750, 500);
         stage.setTitle("APCS Project Tester by Tyler Place"+(version != null ? " "+version : ""));

@@ -94,11 +94,11 @@ public class PrioritizingPatients {
     static void printPriority(String name, int score) {
         System.out.println("We have found patient "+name+" to have a priority score of: "+score);
         if (score >= 332) {
-            System.out.println("We have determined this patient is high priority, and it is advised to call an appropriate medical provider ASAP.");
+            System.out.println("We have determined this patient is high priority,\nand it is advised to call an appropriate medical provider ASAP.");
         } else if (score >= 166) {
-            System.out.println("We have determined this patient is medium priority. Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.");
+            System.out.println("We have determined this patient is medium priority.\nPlease assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.");
         } else {
-            System.out.println("We have determined this patient is low priority. Please put them on the waitlist for when a medical provider becomes available.");
+            System.out.println("We have determined this patient is low priority.\nPlease put them on the waitlist for when a medical provider becomes available.");
         }
     }
 
