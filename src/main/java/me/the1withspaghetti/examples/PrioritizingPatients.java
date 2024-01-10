@@ -38,9 +38,11 @@ public class PrioritizingPatients {
     }
 
     static void printIntro() {
-        System.out.println("Hello! We value you and your time, so we will help you prioritize which patients to see next!");
-        System.out.println("Please answer the following questions about the next patient so we can help you do your best work :)\n");
-        //System.out.println();
+        System.out.println("Hello! We value you and your time, so we will help\n" +
+                "you prioritize which patients to see next!");
+        System.out.println("Please answer the following questions about the next patient so\n" +
+                "we can help you do your best work :)");
+        System.out.println();
     }
 
     static String getName(Scanner in) {
@@ -94,11 +96,15 @@ public class PrioritizingPatients {
     static void printPriority(String name, int score) {
         System.out.println("We have found patient "+name+" to have a priority score of: "+score);
         if (score >= 332) {
-            System.out.println("We have determined this patient is high priority,\nand it is advised to call an appropriate medical provider ASAP.");
+            System.out.println("We have determined this patient is high priority,\n" +
+                    "and it is advised to call an appropriate medical provider ASAP.");
         } else if (score >= 166) {
-            System.out.println("We have determined this patient is medium priority.\nPlease assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.");
+            System.out.println("We have determined this patient is medium priority.\n" +
+                    "Please assign an appropriate medical provider to their case\n" +
+                    "and check back in with the patient's condition in a little while.");
         } else {
-            System.out.println("We have determined this patient is low priority.\nPlease put them on the waitlist for when a medical provider becomes available.");
+            System.out.println("We have determined this patient is low priority.\n" +
+                    "Please put them on the waitlist for when a medical provider becomes available.");
         }
     }
 

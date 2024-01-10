@@ -29,7 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        String version = "v1.3";
+        String version = "v1.4";
         System.out.println("Program version: "+version);
 
         Label title = new Label("APCS Project Tester by Tyler Place"+(version != null ? " ("+version+")" : ""));

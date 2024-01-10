@@ -71,8 +71,10 @@ public class PrioritizingPatientsTest implements AbstractTest {
             ConsoleReader consoleOut = compiledCode.getProcessOutput();
             OutputStream consoleIn = compiledCode.getProcessInput();
 
-            assertEquals("Hello! We value you and your time, so we will help you prioritize which patients to see next!", consoleOut.nextLine(1000));
-            assertEquals("Please answer the following questions about the next patient so we can help you do your best work :)", consoleOut.nextLine(100));
+            assertEquals("Hello! We value you and your time, so we will help", consoleOut.nextLine(1000));
+            assertEquals("you prioritize which patients to see next!", consoleOut.nextLine(100));
+            assertEquals("Please answer the following questions about the next patient so", consoleOut.nextLine(100));
+            assertEquals("we can help you do your best work :)", consoleOut.nextLine(100));
             assertEquals("", consoleOut.nextLine(100));
 
             int count = 0;
@@ -124,7 +126,8 @@ public class PrioritizingPatientsTest implements AbstractTest {
                     assertEquals("and it is advised to call an appropriate medical provider ASAP.", consoleOut.nextLine(100));
                 } else if (score >= 166) {
                     assertEquals("We have determined this patient is medium priority.", consoleOut.nextLine(100));
-                    assertEquals("Please assign an appropriate medical provider to their case and check back in with the patient's condition in a little while.", consoleOut.nextLine(100));
+                    assertEquals("Please assign an appropriate medical provider to their case", consoleOut.nextLine(100));
+                    assertEquals("and check back in with the patient's condition in a little while.", consoleOut.nextLine(100));
                 } else {
                     assertEquals("We have determined this patient is low priority.", consoleOut.nextLine(100));
                     assertEquals("Please put them on the waitlist for when a medical provider becomes available.", consoleOut.nextLine(100));
