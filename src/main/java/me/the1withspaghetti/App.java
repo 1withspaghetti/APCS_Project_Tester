@@ -15,21 +15,22 @@ import me.the1withspaghetti.events.TestStartEvent;
 import me.the1withspaghetti.panals.ControlPanel;
 import me.the1withspaghetti.panals.MainPanel;
 import me.the1withspaghetti.tests.AbstractTest;
+import me.the1withspaghetti.tests.impl.ElectionSimulatorTest;
 import me.the1withspaghetti.tests.impl.PrioritizingPatientsTest;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 
 public class App extends Application {
 
-    public static final List<AbstractTest> TESTS = List.of(new PrioritizingPatientsTest());
+    public static final List<AbstractTest> TESTS = List.of(
+            new ElectionSimulatorTest(),
+            new PrioritizingPatientsTest()
+    );
 
     @Override
     public void start(Stage stage) {
 
-        String version = "v1.4";
+        String version = "v1.5";
         System.out.println("Program version: "+version);
 
         Label title = new Label("APCS Project Tester by Tyler Place"+(version != null ? " ("+version+")" : ""));
